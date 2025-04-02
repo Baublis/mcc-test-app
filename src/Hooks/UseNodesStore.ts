@@ -12,10 +12,7 @@ const useNodesStore = () => {
 
     const removeNode = (id: number) => {
 
-        const node = nodes.find((a) => a.id === id);
-
-        if (node === undefined || node === null)
-            return;
+        const node = nodes.find((a) => a.id === id) ?? null;
 
         dispatch(slice.actions.removeNode(node));
     }

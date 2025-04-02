@@ -2,9 +2,10 @@ import {FC} from "react";
 
 import Menu from "./Menu";
 import Header from "./Header";
+import Tree from "./Tree";
 
 import "./style.css"
-import Content from "./Content";
+
 
 const App: FC = () => (
     <div id="app-main-layout" className="app-window-container">
@@ -13,7 +14,7 @@ const App: FC = () => (
                 <Menu/>
                 <div className="main-content">
                     <Header/>
-                    <Content/>
+                    <Tree/>
                 </div>
             </div>
         </div>

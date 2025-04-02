@@ -2,19 +2,25 @@ import {FC} from "react";
 
 import "./style.css";
 import Node from "../Node";
+import useNodesStore from "../../Hooks/UseNodesStore.ts";
 
 const Tree: FC = () => {
+
+    const { state } = useNodesStore();
+
     return (
         <div className="content-container">
-            <Node
-                label='Node 1'
-            ></Node>
-            <Node
-                label='Node 2'
-            ></Node>
-            <Node
-                label='Node 3'
-            ></Node>
+            {state.nodes &&
+                state.nodes.map((node) => (
+                    <Node
+                        label={node.label}
+                        level={node.level}
+                        id={1}
+                        parentId={1}
+                        selected={false}
+                    >
+                    </Node>
+                ))}
         </div>
     )
 };

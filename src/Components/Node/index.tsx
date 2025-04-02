@@ -1,15 +1,19 @@
 import {FC} from "react";
 
-import {NodeModelEasy} from "../../Models/Node/NodeModelEasy.ts";
+import {NodeModel} from "../../Models/Node/NodeModel.ts";
 
 import "./style.css";
 
-const Node: FC<NodeModelEasy> = ({
-    label
+const Node: FC<NodeModel> = ({
+    label,
+    //level
 }) => {
 
     return (
-        <div className="node-container">
+        <div
+            className="node-container"
+            //style={{"padding-left": level * 30}}
+        >
             {label}
         </div>
     )

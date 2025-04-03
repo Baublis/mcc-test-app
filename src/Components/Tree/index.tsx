@@ -5,24 +5,25 @@ import {NodeModel} from "../../Models/Node/NodeModel";
 
 import "./style.css";
 
-type Props = { data: NodeModel[] };
+type Props = {
+    nodes: NodeModel[];
+    selectedNode: NodeModel | undefined;
+    select: (NodeModel: NodeModel) => void
+};
 
-const Tree: FC<Props> = ({ data }) => {
-
+const Tree: FC<Props> = ({nodes, selectedNode, select}) => {
     return (
         <div className="tree-container">
-            {data &&
-                data.map((node) =>
-                (
-                    <Node
-                        label={node.label}
-                        level={node.level}
-                        id={1}
-                        parentId={1}
-                        selected={false}
-                    >
-                    </Node>
-                ))
+            {nodes &&
+                nodes.map((node) =>
+                    (
+                        <Node
+                            node={node}
+                            selectedNode={selectedNode}
+                            select={select}
+                        >
+                        </Node>
+                    ))
             }
         </div>
     )

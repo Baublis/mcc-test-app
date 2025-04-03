@@ -1,4 +1,11 @@
 .node-container {
     display: flex;
     flex-direction: row;
+    width: fit-content;
+    user-select: none;
+}
+
+.node {
+    background: var(--dark-gray);
+
 }

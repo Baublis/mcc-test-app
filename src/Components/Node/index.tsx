@@ -4,20 +4,30 @@ import {NodeModel} from "../../Models/Node/NodeModel";
 
 import "./style.css";
 
-const Node: FC<NodeModel> = ({
-    label,
-    //level
-}) => {
+type Props = {
+    node: NodeModel;
+    selectedNode: NodeModel | undefined;
+    select: (NodeModel: NodeModel) => void
+};
+
+const Node: FC<Props> = ({ node, selectedNode, select}) => {
+    const handleSelect = () => {
+        select(node);
+        node.selected = true;
+    } ;
 
     return (
         <div
             className="node-container"
-            //style={{"padding-left": level * 30}}
+            onClick={handleSelect}
         >
-            {label}
+            <div
+                className={selectedNode?.id === node.id ? "node" : ""}
+            >
+                {node.label}
+            </div>
         </div>
-    )
+    );
 };
-
 
 export default Node;

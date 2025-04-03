@@ -10,28 +10,30 @@ import Button from "./Button";
 import "./style.css";
 
 const App: FC = () => {
-
-    const [ data, setData ] = useState<NodeModel[]>([]);
+    const [count, setCount] = useState<number>(0);
+    const [node, selectNode] = useState<NodeModel>();
+    const [nodes, setNodes] = useState<NodeModel[]>([]);
 
     const handleAdd: MouseEventHandler<HTMLButtonElement> = () => {
+        setCount(count + 1);
         const newElement = new NodeModel(
-            data.length,
+            count,
             0,
-            data.length,
-            "Node " + data.length,
+            0,
+            "Node " + count,
             false
         )
-        setData([...data, newElement]);
-    } ;
-
+        setNodes([...nodes, newElement]);
+    };
     const handleRemove: MouseEventHandler<HTMLButtonElement> = () => {
-        const newData = data.filter(node => node.id !== data.length - 1);
-        setData(newData);
-    } ;
-
+        if (node === undefined) return;
+        const newData = nodes.filter(a => a.id !== node.id);
+        setNodes(newData);
+    };
     const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
-        setData([]);
-    } ;
+        setNodes([]);
+        selectNode(undefined)
+    };
 
     return (
         <Layout>
@@ -51,7 +53,9 @@ const App: FC = () => {
             </Menu>
             <Page>
                 <Tree
-                    data={data}
+                    nodes={nodes}
+                    selectedNode={node}
+                    select={selectNode}
                 />
             </Page>
         </Layout>

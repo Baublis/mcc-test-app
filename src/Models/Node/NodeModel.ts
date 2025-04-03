@@ -3,6 +3,7 @@ export class NodeModel {
     parent: NodeModel | null;
     label: string;
     level: number;
+    childNodes: NodeModel[] | null;
 
     constructor(
         id: number,
@@ -15,5 +16,6 @@ export class NodeModel {
         this.level = parent === null
             ? 0
             : parent.level + 1;
+        this.childNodes = [];
     }
 }

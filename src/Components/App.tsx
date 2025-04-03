@@ -11,36 +11,33 @@ import "./style.css";
 
 const App: FC = () => {
     const [count, setCount] = useState<number>(1);
+
     const [selectedNode, select] = useState<NodeModel | null>(null);
+
     const [nodes, setNodes] = useState<NodeModel[]>([]);
 
     const handleAdd: MouseEventHandler<HTMLButtonElement> = () => {
         setCount(count + 1);
+
         const newNode = new NodeModel(
             count,
             "Node " + count,
             selectedNode
         )
 
-        let lnodes: NodeModel[] = [];
-        let pnodes: NodeModel[] = [];
-        nodes.forEach(function (a) {
-            if (selectedNode === null || selectedNode?.id >= a.id){
-                lnodes = [...lnodes, a];
-            }
-            else {
-                pnodes = [...pnodes, a];
-            }
+        nodes.map(a => {
+            if(selectedNode !== null && a.id == selectedNode?.id) a.childNodes?.push(newNode);
+        });
 
-        })
-        //debugger;
-        setNodes(nodes.slice(nodes.length).concat(lnodes,[newNode],pnodes));
+        setNodes([...nodes, newNode]);
     };
+
     const handleRemove: MouseEventHandler<HTMLButtonElement> = () => {
         if (selectedNode === undefined) return;
         const newData = nodes.filter(a => a.id !== selectedNode?.id);
         setNodes(newData);
     };
+
     const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
         setNodes([]);
         select(null);

@@ -1,3 +1,9 @@
+:root {
+  --width: 90%;
+  --height: 90%;
+  --header-height: 2em
+}
+
 .app-container {
   display: flex;
   justify-content: center;
@@ -9,8 +15,8 @@
 .layout-main-container {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  height: 90%;
+  width: var(--width);
+  height: var(--height);
   background: white;
   border-radius: 0;
   border: 2px solid var(--green);
@@ -19,7 +25,7 @@
 
 .layout-header-container {
   display: flex;
-  height: 2em;
+  height: var(--header-height);
   border-bottom: 2px solid var(--green);
   align-items: center;
   justify-content: center;
@@ -27,5 +33,5 @@
 
 .layout-content-container {
   display: flex;
-  height: 100%;
+  height: calc(100% - var(--header-height));
 }

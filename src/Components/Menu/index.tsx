@@ -1,50 +1,54 @@
-import {FC} from "react";
+import {FC, MouseEventHandler} from "react";
+
+import {NodeModel} from "../../Models/Node/NodeModel";
 
 import "./style.css";
-import useNodesStore from "../../Hooks/UseNodesStore.ts";
-import {NodeModel} from "../../Models/Node/NodeModel.ts";
 
-const Menu: FC = () => {
+type Props = { data: NodeModel[]; setData: (items: NodeModel[]) => void };
 
-    const { state,actions } = useNodesStore()
+const Menu: FC<Props> = ({ data, setData }) => {
+
+    const handleAdd: MouseEventHandler<HTMLButtonElement> = () => {
+        const newElement = new NodeModel(
+            data.length,
+            0,
+            data.length,
+            "Node " + data.length,
+            false
+        )
+        setData([...data, newElement]);
+    } ;
+
+    const handleRemove: MouseEventHandler<HTMLButtonElement> = () => {
+        const newData = data.filter(node => node.id !== data.length - 1);
+        setData(newData);
+    } ;
+
+    const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
+        setData([]);
+    } ;
 
     return (
         <div className="menu-container">
-            <div className="menu-items">
-                <div
+            <div className="menu-items-container">
+                <button
                     className="menu-item"
-                    onClick={() =>
-                        {
-                            actions.addNode(
-                                new NodeModel
-                                (
-                                    state.nodes.length,
-                                    0,
-                                    state.nodes.length,
-                                    "Node " + state.nodes.length,
-                                    false
-                                )
-                            );
-                        }
-                    }
+                    onClick={handleAdd}
                 >
                     Add
-                </div>
-                <div
+                </button>
+                <button
                     className="menu-item"
-                    onClick={() => actions.removeNode(state.nodes.length - 1)}
+                    onClick={handleRemove}
                 >
                     Remove
-                </div>
-                <div className="menu-item">
-                    Edit
-                </div>
-                <div
+                </button>
+                <button
                     className="menu-item"
-                    onClick={actions.removeAllNodes}
+                    onClick={handleReset}
                 >
                     Reset
-                </div>
+                </button>
             </div>
         </div>
     )

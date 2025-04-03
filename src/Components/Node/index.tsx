@@ -1,6 +1,6 @@
 import {FC} from "react";
 
-import {NodeModel} from "../../Models/Node/NodeModel.ts";
+import {NodeModel} from "../../Models/Node/NodeModel";
 
 import "./style.css";
 

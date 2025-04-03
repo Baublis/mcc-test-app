@@ -6,7 +6,7 @@
   border-right: 2px solid var(--green);
 }
 
-.menu-items {
+.menu-items-container {
   display: flex;
   flex-direction: column;
   gap: 1em;

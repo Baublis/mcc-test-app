@@ -1,24 +1,30 @@
-import {FC} from "react";
+import {FC, useState} from "react";
 
+import {NodeModel} from "../Models/Node/NodeModel";
+import Layout from "./Layout";
 import Menu from "./Menu";
-import Header from "./Header";
+import Page from "./Page";
 import Tree from "./Tree";
 
-import "./style.css"
+import "./style.css";
 
+const App: FC = () => {
 
-const App: FC = () => (
-    <div id="app-main-layout" className="app-window-container">
-        <div className="app-window">
-            <div className="main-container">
-                <Menu/>
-                <div className="main-content">
-                    <Header/>
-                    <Tree/>
-                </div>
-            </div>
-        </div>
-    </div>
-);
+    const [ data, setData ] = useState<NodeModel[]>([]);
+
+    return (
+        <Layout>
+            <Menu
+                data={data}
+                setData={setData}
+            />
+            <Page>
+                <Tree
+                    data={data}
+                />
+            </Page>
+        </Layout>
+    );
+};
 
 export default App;

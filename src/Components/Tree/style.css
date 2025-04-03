@@ -1,7 +1,8 @@
-.content-container {
+.tree-container {
     display: flex;
     flex-direction: column;
-    padding-left: 1em;
+    width: 100%;
+    padding: 1em;
     gap: 1em;
     overflow: auto;
 }

@@ -10,28 +10,40 @@ import Button from "./Button";
 import "./style.css";
 
 const App: FC = () => {
-    const [count, setCount] = useState<number>(0);
-    const [node, selectNode] = useState<NodeModel | null>(null);
+    const [count, setCount] = useState<number>(1);
+    const [selectedNode, select] = useState<NodeModel | null>(null);
     const [nodes, setNodes] = useState<NodeModel[]>([]);
 
     const handleAdd: MouseEventHandler<HTMLButtonElement> = () => {
         setCount(count + 1);
-        const newElement = new NodeModel(
+        const newNode = new NodeModel(
             count,
-            0,
-            0,
             "Node " + count,
+            selectedNode
         )
-        setNodes([...nodes, newElement]);
+
+        let lnodes: NodeModel[] = [];
+        let pnodes: NodeModel[] = [];
+        nodes.forEach(function (a) {
+            if (selectedNode === null || selectedNode?.id >= a.id){
+                lnodes = [...lnodes, a];
+            }
+            else {
+                pnodes = [...pnodes, a];
+            }
+
+        })
+        //debugger;
+        setNodes(nodes.slice(nodes.length).concat(lnodes,[newNode],pnodes));
     };
     const handleRemove: MouseEventHandler<HTMLButtonElement> = () => {
-        if (node === undefined) return;
-        const newData = nodes.filter(a => a.id !== node?.id);
+        if (selectedNode === undefined) return;
+        const newData = nodes.filter(a => a.id !== selectedNode?.id);
         setNodes(newData);
     };
     const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
         setNodes([]);
-        selectNode(null);
+        select(null);
         setCount(0);
     };
 
@@ -54,8 +66,8 @@ const App: FC = () => {
             <Page>
                 <Tree
                     nodes={nodes}
-                    selectedNode={node}
-                    select={selectNode}
+                    selectedNode={selectedNode}
+                    select={select}
                 />
             </Page>
         </Layout>

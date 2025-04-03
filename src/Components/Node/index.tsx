@@ -21,6 +21,7 @@ const Node: FC<Props> = ({ node, selectedNode, select}) => {
 
     return (
         <div
+            style={{padding: `0 ${1 + node.level * 4}em`}}
             className="node-container"
             onClick={handleSelect}
         >

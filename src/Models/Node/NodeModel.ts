@@ -1,18 +1,19 @@
 export class NodeModel {
     id: number;
-    parentId: number | null;
-    level: number;
+    parent: NodeModel | null;
     label: string;
+    level: number;
 
     constructor(
         id: number,
-        parentId: number | null,
-        level: number,
         label: string,
+        parent: NodeModel | null,
     ) {
         this.id = id;
-        this.parentId = parentId;
-        this.level = level;
         this.label = label;
+        this.parent = parent;
+        this.level = parent === null
+            ? 0
+            : parent.level + 1;
     }
 }

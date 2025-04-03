@@ -23,18 +23,27 @@ const App: FC = () => {
             count,
             "Node " + count,
             selectedNode
-        )
+        );
 
-        nodes.map(a => {
-            if(selectedNode !== null && a.id == selectedNode?.id) a.childNodes?.push(newNode);
-        });
+        if (selectedNode === null) {
+            setNodes([...nodes, newNode]);
+            return
+        } else {
+            let index;
+            for (index = 0; index < nodes.length; index++) {
+                if (nodes[index].id === selectedNode?.id) {
+                    break;
+                }
+            }
 
-        setNodes([...nodes, newNode]);
+            selectedNode.childNodes.push(newNode);
+            nodes.splice(index + selectedNode.childNodes.length, 0, newNode)
+        }
     };
 
     const handleRemove: MouseEventHandler<HTMLButtonElement> = () => {
-        if (selectedNode === undefined) return;
-        const newData = nodes.filter(a => a.id !== selectedNode?.id);
+        if (selectedNode === null) return;
+        const newData = nodes.filter(a => a.id !== selectedNode?.id && a.id);
         setNodes(newData);
     };
 

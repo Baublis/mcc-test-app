@@ -14,7 +14,7 @@ type Props = {
 const Tree: FC<Props> = ({nodes, selectedNode, select}) => {
     return (
         <div className="tree-container">
-            {nodes &&
+            {
                 nodes.map((node) =>
                     (
                         <Node

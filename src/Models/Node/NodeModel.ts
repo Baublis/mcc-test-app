@@ -3,7 +3,7 @@ export class NodeModel {
     parent: NodeModel | null;
     label: string;
     level: number;
-    childNodes: NodeModel[] | null;
+    childNodes: NodeModel[];
 
     constructor(
         id: number,

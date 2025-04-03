@@ -3,6 +3,7 @@
   --gray: #e0e0e0;
   --dark-gray: #616161;
   --green: #33af0b;
+  --font-size: large;
 }
 
 html, body {
@@ -10,5 +11,5 @@ html, body {
   margin: 0;
   color: var(--green);
   background: var(--gray);
-  font-size: large;
+  font-size: var(--font-size);
 }

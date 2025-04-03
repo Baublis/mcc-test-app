@@ -21,7 +21,6 @@ const App: FC = () => {
             0,
             0,
             "Node " + count,
-            false
         )
         setNodes([...nodes, newElement]);
     };
@@ -32,7 +31,8 @@ const App: FC = () => {
     };
     const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
         setNodes([]);
-        selectNode(undefined)
+        selectNode(undefined);
+        setCount(0);
     };
 
     return (

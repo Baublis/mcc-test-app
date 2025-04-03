@@ -48,22 +48,6 @@ const App: FC = () => {
                     label={"Reset"}
                     onClick={handleReset}
                 />
-                <Button
-                    label={"Reset"}
-                    onClick={handleReset}
-                />
-                <Button
-                    label={"Reset"}
-                    onClick={handleReset}
-                />
-                <Button
-                    label={"Reset"}
-                    onClick={handleReset}
-                />
-                <Button
-                    label={"Reset"}
-                    onClick={handleReset}
-                />
             </Menu>
             <Page>
                 <Tree

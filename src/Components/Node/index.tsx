@@ -6,16 +6,18 @@ import "./style.css";
 
 type Props = {
     node: NodeModel;
-    selectedNode: NodeModel | undefined;
-    select: (NodeModel: NodeModel | undefined) => void
+    selectedNode: NodeModel | null;
+    select: (NodeModel: NodeModel | null) => void
 };
 
 const Node: FC<Props> = ({ node, selectedNode, select}) => {
     const handleSelect = () => {
-        selectedNode?.id === node.id
-            ? select(undefined)
-            : select(node);
-    } ;
+        if (selectedNode?.id === node.id) {
+            select(null);
+        } else {
+            select(node);
+        }
+    };
 
     return (
         <div

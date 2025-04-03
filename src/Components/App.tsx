@@ -11,7 +11,7 @@ import "./style.css";
 
 const App: FC = () => {
     const [count, setCount] = useState<number>(0);
-    const [node, selectNode] = useState<NodeModel>();
+    const [node, selectNode] = useState<NodeModel | null>(null);
     const [nodes, setNodes] = useState<NodeModel[]>([]);
 
     const handleAdd: MouseEventHandler<HTMLButtonElement> = () => {
@@ -26,12 +26,12 @@ const App: FC = () => {
     };
     const handleRemove: MouseEventHandler<HTMLButtonElement> = () => {
         if (node === undefined) return;
-        const newData = nodes.filter(a => a.id !== node.id);
+        const newData = nodes.filter(a => a.id !== node?.id);
         setNodes(newData);
     };
     const handleReset: MouseEventHandler<HTMLButtonElement> = () => {
         setNodes([]);
-        selectNode(undefined);
+        selectNode(null);
         setCount(0);
     };
 

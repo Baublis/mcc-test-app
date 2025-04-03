@@ -7,8 +7,8 @@ import "./style.css";
 
 type Props = {
     nodes: NodeModel[];
-    selectedNode: NodeModel | undefined;
-    select: (NodeModel: NodeModel | undefined ) => void
+    selectedNode: NodeModel | null;
+    select: (NodeModel: NodeModel | null ) => void
 };
 
 const Tree: FC<Props> = ({nodes, selectedNode, select}) => {

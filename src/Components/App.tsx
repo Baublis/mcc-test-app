@@ -34,12 +34,12 @@ const App: FC = () => {
         const newNode = new NodeModel(
             count,
             "Node " + count,
-            selectedNode
+            selectedNode,
+            <input/>
         );
 
         if (selectedNode === null) {
             setNodes([...nodes, newNode]);
-
             return
         } else {
             let index;
@@ -68,14 +68,26 @@ const App: FC = () => {
         setNodes([]);
         select(null);
         setCount(0);
+        setEditNode(null);
     };
 
     const handleEdit: MouseEventHandler<HTMLButtonElement> = () => {
+        if (selectedNode === null) return;
 
+        let index;
+        for (index = 0; index < nodes.length; index++) {
+            if (nodes[index].id === selectedNode?.id) {
+                break;
+            }
+        }
+
+        setEditNode(selectedNode);
     }
 
     const handleSave: MouseEventHandler<HTMLButtonElement> = () => {
+        if (selectedNode === null) return;
 
+        setEditNode(null);
     }
 
     return (
@@ -107,6 +119,8 @@ const App: FC = () => {
                     nodes={nodes}
                     selectedNode={selectedNode}
                     select={select}
+                    editingNode={editingNode}
+                    setEditNode={setEditNode}
                 />
             </Page>
         </Layout>

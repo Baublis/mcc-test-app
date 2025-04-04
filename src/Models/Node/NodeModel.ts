@@ -3,14 +3,16 @@ import React from "react";
 export class NodeModel {
     id: number;
     parent: NodeModel | null;
-    label: React.ReactNode;
+    label: string;
+    input: React.ReactNode;
     level: number;
     childNodes: NodeModel[];
 
     constructor(
         id: number,
-        label: React.ReactNode,
+        label: string,
         parent: NodeModel | null,
+        input: React.ReactNode
     ) {
         this.id = id;
         this.label = label;
@@ -19,5 +21,6 @@ export class NodeModel {
             ? 0
             : parent.level + 1;
         this.childNodes = [];
+        this.input = input;
     }
 }

@@ -8,10 +8,18 @@ import "./style.css";
 type Props = {
     nodes: NodeModel[];
     selectedNode: NodeModel | null;
-    select: (NodeModel: NodeModel | null ) => void
+    select: (NodeModel: NodeModel | null ) => void;
+    editingNode: NodeModel | null;
+    setEditNode: (NodeModel: NodeModel | null ) => void;
 };
 
-const Tree: FC<Props> = ({nodes, selectedNode, select}) => {
+const Tree: FC<Props> = ({
+                             nodes,
+                             selectedNode,
+                             select,
+                             editingNode,
+                             setEditNode
+                         }) => {
     return (
         <div className="tree-container">
             {
@@ -21,6 +29,8 @@ const Tree: FC<Props> = ({nodes, selectedNode, select}) => {
                             node={node}
                             selectedNode={selectedNode}
                             select={select}
+                            editingNode={editingNode}
+                            setEditNode={setEditNode}
                         >
                         </Node>
                     ))

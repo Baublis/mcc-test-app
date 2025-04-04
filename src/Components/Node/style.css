@@ -7,5 +7,5 @@
 
 .node {
     background: var(--dark-gray);
-
+    user-select: none;
 }

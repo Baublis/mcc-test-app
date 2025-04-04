@@ -31,8 +31,7 @@ const Tree: FC<Props> = ({
                             select={select}
                             editingNode={editingNode}
                             setEditNode={setEditNode}
-                        >
-                        </Node>
+                        />
                     ))
             }
         </div>

@@ -32,7 +32,7 @@ const Node: FC<Props> = ({
 
     return (
         <div
-            style={{padding: `0 ${1 + node.level * 4}em`}}
+            style={{padding: `0 0 1em ${1 + node.level * 4}em`}}
             className="node-container"
             onClick={handleSelect}
         >

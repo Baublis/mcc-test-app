@@ -11,8 +11,7 @@ export class NodeModel {
     constructor(
         id: number,
         label: string,
-        parent: NodeModel | null,
-        input: React.ReactNode
+        parent: NodeModel | null
     ) {
         this.id = id;
         this.label = label;
@@ -21,6 +20,5 @@ export class NodeModel {
             ? 0
             : parent.level + 1;
         this.childNodes = [];
-        this.input = input;
     }
 }

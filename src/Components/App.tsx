@@ -10,6 +10,8 @@ import Button from "./Button";
 import "./style.css";
 
 const App: FC = () => {
+    const [label, setLabel] = useState('');
+
     const [count, setCount] = useState<number>(1);
 
     const [selectedNode, select] = useState<NodeModel | null>(null);
@@ -34,8 +36,7 @@ const App: FC = () => {
         const newNode = new NodeModel(
             count,
             "Node " + count,
-            selectedNode,
-            <input className={"node-input"}/>
+            selectedNode
         );
 
         if (selectedNode === null) {
@@ -74,19 +75,18 @@ const App: FC = () => {
     const handleEdit: MouseEventHandler<HTMLButtonElement> = () => {
         if (selectedNode === null) return;
 
-        let index;
-        for (index = 0; index < nodes.length; index++) {
-            if (nodes[index].id === selectedNode?.id) {
-                break;
-            }
-        }
+        selectedNode.input = <input
+            defaultValue={selectedNode.label}
+            onChange={e => setLabel(e.target.value)}
+        />
 
         setEditNode(selectedNode);
-    }
+    };
 
     const handleSave: MouseEventHandler<HTMLButtonElement> = () => {
         if (selectedNode === null) return;
 
+        selectedNode.label = label;
         setEditNode(null);
     }
 

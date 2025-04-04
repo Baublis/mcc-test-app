@@ -102,6 +102,11 @@ const App: FC = () => {
                     onClick={handleAdd}
                 />
                 <Button
+                    disabled={selectedNode === null}
+                    label={editingNode === null ? "Edit" : "Save"}
+                    onClick={editingNode === null ? handleEdit : handleSave}
+                />
+                <Button
                     disabled={false}
                     label={"Remove"}
                     onClick={handleRemove}
@@ -111,11 +116,7 @@ const App: FC = () => {
                     label={"Reset"}
                     onClick={handleReset}
                 />
-                <Button
-                    disabled={selectedNode === null}
-                    label={editingNode === null ? "Edit" : "Save"}
-                    onClick={editingNode === null ? handleEdit : handleSave}
-                />
+
             </Menu>
             <Page>
                 <Tree

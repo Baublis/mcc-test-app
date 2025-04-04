@@ -4,13 +4,15 @@ import "./style.css";
 
 type Props = {
     onClick : MouseEventHandler<HTMLButtonElement>;
-    label: string
+    label: string,
+    disabled: boolean
 };
 
-const Button: FC<Props> = ({onClick, label}) => {
+const Button: FC<Props> = ({onClick, label, disabled}) => {
     return (
         <div className={"button-container"}>
             <button
+                disabled={disabled}
                 className={"button"}
                 onClick={onClick}
             >

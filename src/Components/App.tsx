@@ -14,16 +14,18 @@ const App: FC = () => {
 
     const [selectedNode, select] = useState<NodeModel | null>(null);
 
+    const [editingNode, setEditNode] = useState<NodeModel | null>(null);
+
     const [nodes, setNodes] = useState<NodeModel[]>([]);
 
-    const getRemoveNodes = (removeNodes: NodeModel[]) => {
-        let childNodes:NodeModel[] = [];
-        for (let index = 0; index < removeNodes.length; index++) {
-            if (removeNodes[index].childNodes.length > 0) {
-                childNodes = getRemoveNodes(removeNodes[index].childNodes);
+    const getRemoveNodes = (removeNodes: NodeModel[], childNodes:NodeModel[]): void => {
+        removeNodes.forEach((node) => {
+            if (node.childNodes.length > 0) {
+                getRemoveNodes(node.childNodes, childNodes)
             }
-        }
-        return childNodes.concat(removeNodes);
+        })
+
+        childNodes.push(...removeNodes);
     }
 
     const handleAdd: MouseEventHandler<HTMLButtonElement> = () => {
@@ -37,6 +39,7 @@ const App: FC = () => {
 
         if (selectedNode === null) {
             setNodes([...nodes, newNode]);
+
             return
         } else {
             let index;
@@ -53,7 +56,9 @@ const App: FC = () => {
 
     const handleRemove: MouseEventHandler<HTMLButtonElement> = () => {
         if (selectedNode === null) return;
-        const childNodes = getRemoveNodes([selectedNode]);
+
+        const childNodes:NodeModel[] = [];
+        getRemoveNodes([selectedNode],childNodes);
         const newData = nodes.filter(n => !childNodes.find(chn => chn.id === n.id));
         setNodes(newData);
         select(null);
@@ -65,20 +70,36 @@ const App: FC = () => {
         setCount(0);
     };
 
+    const handleEdit: MouseEventHandler<HTMLButtonElement> = () => {
+
+    }
+
+    const handleSave: MouseEventHandler<HTMLButtonElement> = () => {
+
+    }
+
     return (
         <Layout>
             <Menu>
                 <Button
+                    disabled={false}
                     label={"Add"}
                     onClick={handleAdd}
                 />
                 <Button
+                    disabled={false}
                     label={"Remove"}
                     onClick={handleRemove}
                 />
                 <Button
+                    disabled={false}
                     label={"Reset"}
                     onClick={handleReset}
+                />
+                <Button
+                    disabled={selectedNode === null}
+                    label={editingNode === null ? "Edit" : "Save"}
+                    onClick={editingNode === null ? handleEdit : handleSave}
                 />
             </Menu>
             <Page>

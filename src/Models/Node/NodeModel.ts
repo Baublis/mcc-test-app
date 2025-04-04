@@ -1,13 +1,15 @@
+import React from "react";
+
 export class NodeModel {
     id: number;
     parent: NodeModel | null;
-    label: string;
+    label: React.ReactNode;
     level: number;
     childNodes: NodeModel[];
 
     constructor(
         id: number,
-        label: string,
+        label: React.ReactNode,
         parent: NodeModel | null,
     ) {
         this.id = id;

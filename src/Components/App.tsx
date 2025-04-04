@@ -16,6 +16,10 @@ const App: FC = () => {
 
     const [nodes, setNodes] = useState<NodeModel[]>([]);
 
+    const getAllChildNodes = (parentNodes: NodeModel[]) => {
+        return parentNodes;
+    }
+
     const handleAdd: MouseEventHandler<HTMLButtonElement> = () => {
         setCount(count + 1);
 
@@ -43,7 +47,8 @@ const App: FC = () => {
 
     const handleRemove: MouseEventHandler<HTMLButtonElement> = () => {
         if (selectedNode === null) return;
-        const newData = nodes.filter(a => a.id !== selectedNode?.id && a.id);
+        const childNodes = getAllChildNodes([selectedNode]);
+        const newData = nodes.filter(n => !childNodes.find(chn => chn.id === n.id));
         setNodes(newData);
     };
 

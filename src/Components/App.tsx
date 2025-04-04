@@ -75,7 +75,10 @@ const App: FC = () => {
     const handleEdit: MouseEventHandler<HTMLButtonElement> = () => {
         if (selectedNode === null) return;
 
+        setLabel(selectedNode.label);
+
         selectedNode.input = <input
+            className={"node-input"}
             defaultValue={selectedNode.label}
             onChange={e => setLabel(e.target.value)}
         />

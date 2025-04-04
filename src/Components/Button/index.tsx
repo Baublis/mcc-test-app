@@ -8,12 +8,19 @@ type Props = {
     disabled: boolean
 };
 
-const Button: FC<Props> = ({onClick, label, disabled}) => {
+const Button: FC<Props> = (
+    {
+        onClick,
+        label,
+        disabled
+    }
+) => {
+
     return (
         <div className={"button-container"}>
             <button
-                disabled={disabled}
                 className={"button"}
+                disabled={disabled}
                 onClick={onClick}
             >
                 {label}

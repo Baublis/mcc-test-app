@@ -13,6 +13,6 @@
 
 .node-input
 {
-    height: 100%;
-    width: 100%;
+    color: var(--red);
+    height: 2em;
 }

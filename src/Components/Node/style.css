@@ -1,11 +1,18 @@
 .node-container {
     display: flex;
     flex-direction: row;
+    height: 1em;
     width: fit-content;
     user-select: none;
 }
 
 .node {
-    background: var(--dark-gray);
+    color: var(--red);
     user-select: none;
+}
+
+.node-input
+{
+    height: 100%;
+    width: 100%;
 }

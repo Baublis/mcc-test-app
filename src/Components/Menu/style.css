@@ -12,4 +12,5 @@
   gap: 1em;
   overflow-y: auto;
   overflow-x: hidden;
+  user-select: none;
 }

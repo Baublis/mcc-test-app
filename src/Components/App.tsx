@@ -35,7 +35,7 @@ const App: FC = () => {
             count,
             "Node " + count,
             selectedNode,
-            <input/>
+            <input className={"node-input"}/>
         );
 
         if (selectedNode === null) {

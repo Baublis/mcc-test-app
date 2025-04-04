@@ -16,14 +16,14 @@ const App: FC = () => {
 
     const [nodes, setNodes] = useState<NodeModel[]>([]);
 
-    const getAllChildNodes = (parentNodes: NodeModel[]) => {
+    const getRemoveNodes = (removeNodes: NodeModel[]) => {
         let childNodes:NodeModel[] = [];
-        for (let index = 0; index < parentNodes.length; index++) {
-            if (parentNodes[index].childNodes.length > 0) {
-                childNodes = getAllChildNodes(parentNodes[index].childNodes);
+        for (let index = 0; index < removeNodes.length; index++) {
+            if (removeNodes[index].childNodes.length > 0) {
+                childNodes = getRemoveNodes(removeNodes[index].childNodes);
             }
         }
-        return childNodes.concat(parentNodes);
+        return childNodes.concat(removeNodes);
     }
 
     const handleAdd: MouseEventHandler<HTMLButtonElement> = () => {
@@ -53,7 +53,7 @@ const App: FC = () => {
 
     const handleRemove: MouseEventHandler<HTMLButtonElement> = () => {
         if (selectedNode === null) return;
-        const childNodes = getAllChildNodes([selectedNode]);
+        const childNodes = getRemoveNodes([selectedNode]);
         const newData = nodes.filter(n => !childNodes.find(chn => chn.id === n.id));
         setNodes(newData);
         select(null);
